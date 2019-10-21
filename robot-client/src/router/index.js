@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import Login from '../pages/login/Login';
 import Main from '../pages/main/Main.vue';
+import MainControl from "@/components/mainControl/MainControl.vue";
+import ModuleControl from "@/components/moduleControl/ModuleControl.vue";
+import ServerControl from "@/components/serverControl/ServerControl.vue";
+import RuleControl from "@/components/ruleControl/RuleControl.vue";
 
 Vue.use(Router)
 
@@ -28,7 +31,25 @@ export default new Router({
     {
       path: '/main',
       name: 'Main',
-      component: Main
+      component: Main,
+      children: [
+        {
+          path: "mainControl",
+          component: MainControl
+        },
+        {
+          path: 'moduleControl',
+          component: ModuleControl
+        },
+        {
+          path: 'serverControl',
+          component: ServerControl
+        },
+        {
+          path: 'ruleControl',
+          component: RuleControl
+        }
+      ]
     }
   ]
 })

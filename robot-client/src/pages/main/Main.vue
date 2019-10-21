@@ -16,19 +16,29 @@
         </div>
 
       </div>
-      <div style="width:100%;" ref="mainWrapper" class="main-wrapper">
-        <el-container width="100%">
+      <!--<div style="width:100%;" ref="mainWrapper" class="main-wrapper">
+        <el-container width="100%" height="100%">
           <el-aside width="200px" class="aside">
-            <nav-menu class="menu"></nav-menu>
+            <nav-menu class="menu" :activeIndex="activeIndex"></nav-menu>
           </el-aside>
           <el-main>
             <div class="content">
               管理界面
             </div>
-            <!--使用路由管理-->
+            &lt;!&ndash;使用路由管理&ndash;&gt;
+            <router-link to="" class="show-view"></router-link>
           </el-main>
 
-        </el-container>
+        </el-container>-->
+      <div style="width:100%;" ref="mainWrapper" class="main-wrapper">
+          <div class="aside">
+            <nav-menu class="menu" :activeIndex="activeIndex" @change="_changeRouter"></nav-menu>
+          </div>
+          <div class="content-wrapper">
+            <!--使用路由管理-->
+            <router-view class="show-view"></router-view>
+          </div>
+
 
       </div>
 
@@ -39,11 +49,12 @@
 
 <script>
   import Nav from '@/components/nav/Nav';
+  import NavMenu from '@/components/nav/NavMenu';
 
   export default {
     data() {
       return {
-
+        activeIndex: 0
       }
     },
     mounted() {
@@ -54,17 +65,21 @@
     methods: {
       _exit() {
         console.log("退出");
-        this.$router.push({path: 'login'})
+        this.$router.push({path: '/login'})
       },
       _adjustHeight() {
         let bodyHeight = document.documentElement.clientHeight;
         let headerHeight = this.$refs.header.clientHeight;
         let asideHeight = bodyHeight - headerHeight;
         this.$refs.mainWrapper.style.height = asideHeight + "px";
+      },
+      _changeRouter(type) {
+//        console.log('切换路由', type);
       }
     },
     components: {
-      "nav-menu": Nav
+      "nav-menu": NavMenu,
+
     }
   }
 </script>
