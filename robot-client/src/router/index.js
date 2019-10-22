@@ -6,6 +6,7 @@ import MainControl from "@/components/mainControl/MainControl.vue";
 import ModuleControl from "@/components/moduleControl/ModuleControl.vue";
 import ServerControl from "@/components/serverControl/ServerControl.vue";
 import RuleControl from "@/components/ruleControl/RuleControl.vue";
+import ClubControl from "@/components/clubControl/ClubControl.vue";
 
 Vue.use(Router)
 
@@ -48,6 +49,10 @@ export default new Router({
         {
           path: 'ruleControl',
           component: RuleControl
+        },
+        {
+          path: 'clubControl',
+          component: ClubControl
         }
       ]
     }

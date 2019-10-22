@@ -1,41 +1,51 @@
-.main_control_wrapper
+.club-wrapper
   position relative
   padding 20px 15px 20px;
   background: #ffffff;
   min-width 600px;
   .header
+    position: relative;
+    padding-bottom: 39px;
+    border-bottom: 1px solid #0b97ff;
+    .header-title
+      position: absolute;
+      left 0;
+  .search
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    padding-bottom 20px;
-    height 41px;
-    .txt
-      display: flex;
-      align-items: flex-end;
-      width: 580px;
-      .txt
-        display inline-block;
-        font-size: 20px;
-        line-height 20px;
-      .total-txt
-        color: #fc9409;
-      .had-txt
-        color: #83d45d
-      .have-not-txt
-        color: #3dacff
-      .txt-item
-        height: 20px;
-    .buttons
-      width 700px;
-      display: flex;
-      justify-content: space-between;
-      //align-items flex-end;
+    justify-content: flex-start;
+    align-items center;
+    padding 20px 35px;
+    //border-bottom: 12px solid #eef1f5;
+    margin-bottom: 12px;
+    .search-txt
+      color: #5b5b5b
+      font-size: 14px;
+      margin-left: 15px;
+    .club-id
+      width: 120px;
+      height: 26px;
+      border-radius 5px;
+      border 2px solid #e8ecf0;
+      padding-left 10px;
+    .club-name
+      width: 120px;
+      height: 26px;
+      border-radius 5px;
+      border 2px solid #e8ecf0;
+      padding-left 10px;
+      width: 150px;
+    .btn-config
+      position: relative;
+      padding-top: 33px;
+      margin-left: 15px;
+      .img-btn-config
+        position: absolute;
+        bottom: 0;
 
   .show-list
-    .main-table
+    .club-table
       border-collapse: collapse;
       border-spacing: 0;
-      //table-layout: fixed
       text-align: center;
       table-layout: automatic
       .table-title
@@ -78,9 +88,6 @@
     justify-content space-between;
     .btn-all
       flex-basis 30;
-      //position absolute
-      ////top 10px;
-      //left 38px;
   .nav-footer
     margin-top: 20px;
   .footer
@@ -89,4 +96,3 @@
     right 10px;
     bottom: 10px;
     color: #7e90a3;
-

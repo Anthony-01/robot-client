@@ -68,7 +68,7 @@
           return ;
         }
         console.log("验证码正确");
-        console.log(this.$router.push({path: 'main'}));
+        console.log(this.$router.push({path: 'main/mainControl'}));
       },
       _register() {
 

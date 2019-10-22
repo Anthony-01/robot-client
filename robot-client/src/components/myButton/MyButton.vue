@@ -16,11 +16,11 @@
       }
     },
     mounted() {
-      import('../../assets/' + this.commonSrc + "_0.png").then(src => {
+      import('../../assets/btn/' + this.commonSrc + "_0.png").then(src => {
         this.imgSrc0 = src;
         this.currentSrc = src;
       });
-      import('../../assets/' + this.commonSrc + "_1.png").then(src => {
+      import('../../assets/btn/' + this.commonSrc + "_1.png").then(src => {
         this.imgSrc1 = src;
       });
     },

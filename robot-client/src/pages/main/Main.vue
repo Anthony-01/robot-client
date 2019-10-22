@@ -48,7 +48,7 @@
 </template>
 
 <script>
-  import Nav from '@/components/nav/Nav';
+//  import Nav from '@/components/nav/Nav';
   import NavMenu from '@/components/nav/NavMenu';
 
   export default {
