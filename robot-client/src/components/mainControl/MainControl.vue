@@ -59,7 +59,6 @@
       </div>
       <nav-footer class="nav-footer"></nav-footer>
       <div class="footer">陪玩管理主界面:用于显示整体信息和机器人所在俱乐部的批次和信息</div>
-      <test-button :commonSrc="objSrc"></test-button>
     </div>
 
 </template>
@@ -71,8 +70,20 @@
   import TestButton from './TestButton.vue'
 
   //导入图片
-  import BuildImg0 from '../../assets/btn/btn_build_0.png';
-  import BuildImg1 from '../../assets/btn/btn_build_1.png';
+//  import BuildImg0 from '@@/btn/btn_build_0.png';
+//  import BuildImg1 from '@@/btn/btn_build_1.png';
+//  import ModuleImg0 from '@@/btn/btn_module_0.png';
+//  import ModuleImg1 from '@@/btn/btn_module_1.png';
+//  import RuleImg0 from '@@/btn/btn_rule_0.png';
+//  import RuleImg1 from '@@/btn/btn_rule_1.png';
+//  import DeleteAllImg0 from '@@/btn/btn_delete_all_0.png';
+//  import DeleteAllImg1 from '@@/btn/btn_delete_all_1.png';
+//  import EditImg0 from '@@/btn/btn_edit_0.png';
+//  import EditImg1 from '@@/btn/btn_edit_1.png';
+//  import DeleteImg0 from '@@/btn/btn_delete_0.png';
+//  import DeleteImg1 from '@@/btn/btn_delete_1.png';
+//  import ClubImg0 from '@@/btn/btn_club_0.png';
+//  import ClubImg1 from '@@/btn/btn_club_1.png';
 
   const ALL = "全选";
   const CANCEL = "取消";
@@ -84,6 +95,34 @@
         hadMaj: 0,
         notMaj: 0,
         //按钮名称
+//        buildSrc: {
+//          src0: BuildImg0,
+//          src1: BuildImg1
+//        },
+//        moduleSrc: {
+//          src0: ModuleImg0,
+//          src1: ModuleImg1
+//        },
+//        ruleSrc: {
+//          src0: RuleImg0,
+//          src1: RuleImg1
+//        },
+//        deleteAllSrc: {
+//          src0: DeleteAllImg0,
+//          src1: DeleteAllImg1
+//        },
+//        editSrc: {
+//          src0: EditImg0,
+//          src1: EditImg1
+//        },
+//        deleteSrc: {
+//          src0: DeleteImg0,
+//          src1: DeleteImg1
+//        },
+//        clubSrc: {
+//          src0: ClubImg0,
+//          src1: ClubImg1
+//        },
         buildSrc: "btn_build",
         moduleSrc: "btn_module",
         ruleSrc: "btn_rule",
@@ -91,11 +130,6 @@
         editSrc: "btn_edit",
         deleteSrc: "btn_delete",
         clubSrc: "btn_club",
-        //testButton,
-        objSrc: {
-          src0: BuildImg0,
-          src1: BuildImg1
-        },
         infoTip: ALL,
         btnCancel: false,
         currentTable: [{

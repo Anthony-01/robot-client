@@ -1,5 +1,10 @@
 <template>
-    <div class="my-button-wrapper" @mouseup.prevent="onButtonUp" @mousedown.prevent="onButtonDown" @mouseout.prevent="onButtonUp">
+    <div class="my-button-wrapper"
+         @mouseup.prevent="onButtonUp"
+         @mousedown.prevent="onButtonDown"
+         @mouseout.prevent="onButtonUp"
+         @click.prevent="onClick"
+    >
       <img :src="currentSrc">
     </div>
 </template>
@@ -16,28 +21,34 @@
       }
     },
     mounted() {
-      import('../../assets/btn/' + this.commonSrc + "_0.png").then(src => {
+      import('@@/btn/' + this.commonSrc + "_0.png").then(src => {
         this.imgSrc0 = src;
         this.currentSrc = src;
       });
-      import('../../assets/btn/' + this.commonSrc + "_1.png").then(src => {
+      import('@@/btn/' + this.commonSrc + "_1.png").then(src => {
         this.imgSrc1 = src;
       });
     },
     methods: {
       onButtonDown() {
-//        console.log("点击事件down");
         this.currentSrc = this.imgSrc1;
       },
       onButtonUp() {
-//        console.log("点击事件down");
         this.currentSrc = this.imgSrc0;
+      },
+      onClick() {
+        if (this.eventName.length === 0) return;
+        this.$emit(this.eventName);
       }
     },
     props: {
       commonSrc: {
         type: String,
-        default: "common"
+        default: ""
+      },
+      eventName: {
+        type: String,
+        default: ""
       }
     }
   }

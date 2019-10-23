@@ -16,10 +16,10 @@
       }
     },
     mounted() {
-//      import('../../assets/btn/' + this.commonSrc + "_0.png").then(src => {
-//        this.imgSrc0 = src;
-//        this.currentSrc = src;
-//      });
+      import('@@/btn/' + this.commonSrc + ".png").then(src => {
+        this.imgSrc0 = src;
+        this.currentSrc = src;
+      });
 //      import('../../assets/btn/' + this.commonSrc + "_1.png").then(src => {
 //        this.imgSrc1 = src;
 //      });
@@ -27,7 +27,7 @@
     methods: {
       onButtonDown() {
 //        console.log("点击事件down");
-        this.currentSrc = this.imgSrc1;
+//        this.currentSrc = this.imgSrc1;
       },
       onButtonUp() {
 //        console.log("点击事件down");
@@ -36,13 +36,8 @@
     },
     props: {
       commonSrc: {
-        type: Object,
-        default() {
-          return {
-            src0: "",
-            src1: ""
-          }
-        }
+        type: String,
+        default: ""
       }
     }
   }

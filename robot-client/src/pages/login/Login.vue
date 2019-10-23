@@ -25,6 +25,11 @@
         <el-button type="success" class="btn-login" @click="_login">登录</el-button>
 
       </div>
+      <div class="footer">
+        <span>Copyright © Foxuc</span>
+        <br/>
+        <span>Powered by Vue.js</span>
+      </div>
     </div>
 </template>
 

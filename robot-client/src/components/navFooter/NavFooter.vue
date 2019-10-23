@@ -2,7 +2,11 @@
     <div class="nav-footer-wrapper">
       <div class="total">共 <span style="color:#f7902b">{{totalPages}}</span> 页</div>
       <div class="right-wrapper">
-        <div class="btn-first btn"  @mouseup.prevent="onButtonUp($event)" @mousedown.prevent="onButtonDown($event)" @mouseout.prevent="onButtonOut($event)">首页</div>
+        <div class="btn-first btn"  @mouseup.prevent="onButtonUp($event)" @mousedown.prevent="onButtonDown($event)" @mouseout.prevent="onButtonOut($event)">
+          <!--<el-card shadow="hover">-->
+            首页
+          <!--</el-card>-->
+        </div>
         <div class="btn-pre btn" @mouseup.prevent="onButtonUp($event)" @mousedown.prevent="onButtonDown($event)" @mouseout.prevent="onButtonOut($event)">上一页</div>
         <div class="current-page btn">{{currentIndex}}</div>
         <div class="btn-next btn btn" @mouseup.prevent="onButtonUp($event)" @mousedown.prevent="onButtonDown($event)" @mouseout.prevent="onButtonOut($event)">下一页</div>

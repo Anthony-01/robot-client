@@ -2,7 +2,7 @@
     <div class="club-wrapper">
       <!--俱乐部管理-->
       <div class="header">
-        <img src="./resource/title_club_server.png" class="header-title">
+        <img src="@@/btn/title_club_server.png" class="header-title">
       </div>
       <div class="search">
         <span class="search-txt">俱乐部ID：</span>
@@ -57,12 +57,32 @@
 <script>
   import NavFooter from '../navFooter/NavFooter.vue';
   import MyButton from '../myButton/MyButton.vue';
+//  import DeleteAllImg0 from '@@/btn/btn_delete_all_0.png';
+//  import DeleteAllImg1 from '@@/btn/btn_delete_all_1.png';
+//  import EditImg0 from '@@/btn/btn_edit_0.png';
+//  import EditImg1 from '@@/btn/btn_edit_1.png';
+//  import DeleteImg0 from '@@/btn/btn_delete_0.png';
+//  import DeleteImg1 from '@@/btn/btn_delete_1.png';
+
+  //
 
   export default {
     data() {
       return {
         clubAry: [],
         clubName: "暂未获取到俱乐部名称",
+//        editSrc: {
+//          src0: EditImg0,
+//          src1: EditImg1
+//        },
+//        deleteSrc: {
+//          src0: DeleteImg0,
+//          src1: DeleteImg1
+//        },
+//        deleteAllSrc: {
+//          src0: DeleteAllImg0,
+//          src1: DeleteAllImg1
+//        },
         editSrc: "btn_edit",
         deleteSrc: "btn_delete",
         deleteAllSrc: "btn_delete_all",
