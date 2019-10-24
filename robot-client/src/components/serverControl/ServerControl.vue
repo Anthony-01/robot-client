@@ -16,7 +16,7 @@
       </div>
       <div class="buttons">
         <my-button :commonSrc="addSrc" class="button-item" eventName="add-event" @add-event="addEvent"></my-button>
-        <my-button :commonSrc="batchSrc" class="button-item"></my-button>
+        <my-button :commonSrc="batchSrc" class="button-item" eventName="batch-event" @batch-event="batchEvent"></my-button>
       </div>
       <div class="show-list">
         <table class="server-table" width="100%">
@@ -53,7 +53,7 @@
       <div class="btn-wrapper">
         <div class="btn-all"><input type="checkbox" @click="_cancel" v-model="btnCancel"><label >{{infoTip}}</label></div>
         <div class="sub-wrapper">
-          <my-button :commonSrc="modifyAllSrc" class="sub-button"></my-button>
+          <my-button :commonSrc="modifyAllSrc" class="sub-button" eventName="modify-event" @modify-event="modifyEvent"></my-button>
           <my-button :commonSrc="deleteAllSrc" class="sub-button"></my-button>
         </div>
 
@@ -61,6 +61,8 @@
       <nav-footer class="nav-footer"></nav-footer>
       <div class="footer">服务器修改模板，里面可修改机器人属性，支持跨页全选操作。机器人带的积分，除非输光，第二次上线时，最好保持上次的值，另外可设定一个最高值，比如10万，高于则可回收。</div>
       <build-dialog :dialogVisible="buildDialog" @closeDialog="closeDialog" ref="buildDialog"></build-dialog>
+      <batch-dialog :batchVisible="batchAddDialog" @closeBatchDialog="closeBatchDialog" ref="batchDialog"></batch-dialog>
+      <modify-dialog :modifyDialog="modifyAllDialog" @closeModifyDialog="closeModifyDialog" ref="modifyDialog"></modify-dialog>
     </div>
 </template>
 
@@ -68,6 +70,8 @@
   import MyButton from '../myButton/MyButton.vue';
   import NavFooter from '../navFooter/NavFooter.vue';
   import BuildDialog from "../accompony/Accompony.vue";
+  import BatchDialog from "../batchAdd/BatchAdd.vue"
+  import ModifyDialog from "../modifyAll/ModifyAll.vue"
   export default {
     data() {
       return {
@@ -84,7 +88,9 @@
         infoTip: "全选",
         btnCancel: false,
         //dialog
-        buildDialog: true
+        buildDialog: false,
+        batchAddDialog: false,
+        modifyAllDialog: false
       }
     },
     mounted() {
@@ -117,12 +123,26 @@
       },
       addEvent(){
         this.$refs.buildDialog.openDialog();
+      },
+      batchEvent(){
+        this.$refs.batchDialog.openDialog();
+      },
+      closeBatchDialog() {
+        this.$refs.batchDialog.closeDialog();
+      },
+      modifyEvent() {
+        this.$refs.modifyDialog.openDialog();
+      },
+      closeModifyDialog() {
+        this.$refs.modifyDialog.closeDialog();
       }
     },
     components: {
       'my-button': MyButton,
       'nav-footer': NavFooter,
-      'build-dialog': BuildDialog
+      'build-dialog': BuildDialog,
+      'batch-dialog': BatchDialog,
+      'modify-dialog': ModifyDialog
     }
   }
 </script>

@@ -71,18 +71,6 @@
       return {
         clubAry: [],
         clubName: "暂未获取到俱乐部名称",
-//        editSrc: {
-//          src0: EditImg0,
-//          src1: EditImg1
-//        },
-//        deleteSrc: {
-//          src0: DeleteImg0,
-//          src1: DeleteImg1
-//        },
-//        deleteAllSrc: {
-//          src0: DeleteAllImg0,
-//          src1: DeleteAllImg1
-//        },
         editSrc: "btn_edit",
         deleteSrc: "btn_delete",
         deleteAllSrc: "btn_delete_all",

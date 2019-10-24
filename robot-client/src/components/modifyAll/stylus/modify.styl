@@ -1,9 +1,8 @@
-.accompany-wrapper
+.modify-wrapper
   position: relative
-  //min-width: 1980px;
-  .d-wrapper
+  .m-wrapper
     text-align left;
-    min-width: 1450px;
+    min-width: 1550px;
     .content-wrapper
       margin-top -30px;
       padding-top 5px;
@@ -11,9 +10,9 @@
         position: absolute;
         left: 0;
         right: 0;
-        //margin-top -30px;
         border-top 2px solid #f1f1f1
       .split
+        margin-top: 50px;
         height: 30px;
         padding-left: 8px;
         text-align left;
@@ -24,70 +23,38 @@
         font-family: "微软雅黑", Arial;
         &:nth-child(2)
           margin-top 5px;
-      .base-info
+      .game
         display: flex;
-        justify-content: space-between;
-        padding: 8px 0 8px 40px;
-        font-size: 16px;
-        font-weight 700
-        .avatar
-          width: 100px;
-          height: 100px;
-          background: #f5f5f5
-          color: #000;
-          text-align center;
-          line-height: 100px;
-        .info
-          flex-grow 1
-          padding-left: 24px;
-          display: flex;
-          flex-direction column;
-          justify-content space-between;
-          .number
-            :nth-child(3)
-              margin-left 50px;
-            .index
-              margin-left: 15px;
-              font-weight 400;
-            .id
-              margin-left: 15px;
-              font-weight 400;
-          .nick-name
-            padding-top: 10px;
-            .name
-              padding: 4px 4px 4px 10px;
-              border-radius 4px;
-              border 1px solid #e4e8ed;
-              margin-left: 15px;
-              height: 25px;
-          .other
-            display: flex;
-            justify-content: space-between;
-            align-items center;
-            .sex
-              display: flex;
-              justify-content: flex-start;
-              .sex-radio
-                margin-left: 15px;
-            .extend
-              display: flex;
-              justify-content: flex-start;
-              align-items center;
-              .extend-input
-                margin-left: 10px;
-                height 30px;
-                border-radius 4px;
-                border 1px solid #e4e8ed;
-                text-align center;
-              .btn-extend
-                margin-left: 15px;
+        justify-content flex-start;
+        padding-top 10px;
+        padding-bottom 12px;
 
+        select
+          height: 30px;
+          width: 160px;
+          margin-left: 20px;
+          border-radius 4px;
+          border 1px solid #e4e8ed;
+          font-size: 16px;
+          text-align center;
+          padding: 0 0 0 50px;
+        .title
+          flex-shrink 0;
+          width: 100px;
+          text-align right;
+          line-height 36px;
+          color: #666666;
+          font-size: 16px;
+          font-weight 700;
+
+        .game
+          display: flex;
+          justify-content flex-start;
       .select-wrapper
         display flex;
         justify-content: flex-start;
         padding-top 10px;
         padding-bottom 12px;
-        border-bottom: 2px solid #f1f1f1;
         .title:nth-child(3)
           padding-left: 30px;
         .title
@@ -148,4 +115,3 @@
           margin-right 30px;
         .close-btn
           margin-left: 30px;
-
