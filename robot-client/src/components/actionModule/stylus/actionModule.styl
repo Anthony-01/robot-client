@@ -1,6 +1,5 @@
 .action-wrapper
   position: relative
-//min-width: 1980px;
   .a-wrapper
     text-align left;
     min-width: 1450px;
@@ -31,6 +30,7 @@
           width 50%;
           flex-direction column;
           padding 15px 0;
+          margin-right 10px;
           .left-item
             display flex;
             justify-content flex-start;
@@ -66,6 +66,7 @@
           width 50%
           border-radius 4px;
           border: 1px solid #e8ecf0;
+          margin-left 10px;
           .niu-content
             display: flex;
             .niu-left
@@ -90,6 +91,22 @@
                   padding 0 3px;
             .niu-right
               width: 50%
+              .niu-table
+                width: 100%;
+                text-align: center;
+                table-layout: automatic
+                border-collapse: separate;
+                border-spacing: 0 2px;
+                margin-right 8px;
+                .table-row
+                  height 29px;
+                  color: #0184ff
+                  font-size: 14px;
+                  .row-item
+                    border 1px solid #e4e8ed;
+                .table-title
+                  height 24px;
+                  color: #7f91a4;
 
 
       .back-split
@@ -101,3 +118,147 @@
         line-height 33px;
         padding-left 15px;
         border-radius 4px;
+      .two
+        display flex;
+        margin-top: 8px;
+        box-sizing border-box;
+        padding 0;
+        .two-item
+          width 50%
+          border-radius 4px;
+          border: 1px solid #e8ecf0;
+          .module-content
+            padding 14px 0;
+            .content-item
+              display: flex;
+              justify-content flex-start;
+              font-size: 16px;
+
+
+            .qiang-option
+              justify-content space-between;
+              .qiang-item
+                width: 33%;
+                text-align center;
+                vertical-align middle;
+                select
+                  height: 30px;
+                  width: 160px
+                  border-radius 4px;
+                  border 1px solid #e4e8ed;
+                  font-size: 16px;
+            .title
+              width 210px;
+              display flex;
+              justify-content flex-start;
+              align-items center;
+              .txt
+                width 108px;
+                text-align right;
+                color: #666666;
+                font-weight 700;
+              .option
+                vertical-align middle;
+                margin-left: 25px;
+                //height 30px;
+                .toggle
+                  display: inline-block;
+                  //height 20px;
+                  vertical-align: middle;
+                  margin-bottom: 2px;
+                label
+                  padding-left: 4px;
+                  cursor: pointer;
+                  margin: 0;
+                  vertical-align: middle;
+
+
+
+            .tui-option
+              margin 15px 0;
+              justify-content space-between;
+              .tui-item
+                width: 33%;
+                text-align center;
+                vertical-align middle;
+                select
+                  height: 30px;
+                  width: 160px
+                  border-radius 4px;
+                  border 1px solid #e4e8ed;
+                  font-size: 16px;
+            .xia-option
+              justify-content space-between;
+
+              .title
+                width 210px;
+              .xia-item
+                width: 33%;
+                text-align center;
+                vertical-align middle;
+                select
+                  height: 30px;
+                  width: 160px
+                  border-radius 4px;
+                  border 1px solid #e4e8ed;
+                  font-size: 16px;
+              .two-option
+                display: flex;
+                width: 33%;
+                align-items center;
+                justify-content center;
+                .option-wrapper
+                  display: flex;
+                  justify-content space-between
+                  width 186px;
+                  .option
+                    vertical-align middle;
+                    //margin-left: 25px;
+
+                    .toggle
+                      display: inline-block;
+                      vertical-align: middle;
+                      margin-bottom: 2px;
+                    label
+                      padding-left: 4px;
+                      cursor: pointer;
+                      margin: 0;
+                      vertical-align: middle;
+
+        .right
+          margin-left 10px;
+        .left
+          margin-right 10px;
+      .remarks
+        display: flex;
+        justify-content center;
+        margin 5px 0;
+        .title
+          font-size 16px;
+          color: #666666;
+          font-weight: 700;
+        .remarks-box
+          width: 90%;
+          height: 85px;
+          padding: 10px;
+          resize: none;
+          border: 1px solid #e4e8ed;
+          border-radius: 2px;
+          font-size: 16px;
+          color: #666666;
+      .btn-close
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 51px;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        background #f5f5f5;
+        margin-top: -2px;
+        display flex;
+        justify-content center;
+        align-items center;
+        .agree-btn
+          margin-right 30px;
+        .close-btn
+          margin-left: 30px;

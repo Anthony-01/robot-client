@@ -1,8 +1,8 @@
-.server-wrapper
+.rule-wrapper
   position relative
   padding 20px 15px 20px;
   background: #ffffff;
-  min-width 900px;
+  min-width 1400px;
   .header
     position: relative;
     padding-bottom: 39px;
@@ -10,43 +10,30 @@
     .header-title
       position: absolute;
       left 0;
-  .search
-    display: flex;
-    justify-content: flex-start;
-    align-items center;
-    padding 20px 35px;
-    margin-bottom: 12px;
-    .search-txt
-      color: #5b5b5b
-      font-size: 14px;
-      margin-left: 15px;
-    .club-id
-      width: 120px;
-      height: 26px;
-      border-radius 5px;
-      border 2px solid #e8ecf0;
-      padding-left 10px;
-    .club-name
-      width: 120px;
-      height: 26px;
-      border-radius 5px;
-      border 2px solid #e8ecf0;
-      padding-left 10px;
-      width: 150px;
-    .btn-config
-      position: relative;
-      padding-top: 33px;
-      margin-left: 15px;
-      .img-btn-config
-        position: absolute;
-        bottom: 0;
-  .buttons
-    display: flex;
-    justify-content: flex-end;
-    .button-item
-      padding-left: 8px;
+  .top
+    display: flex ;
+    justify-content space-between;
+    padding: 30px 8px 15px 0;
+    .left
+      display: flex ;
+      justify-content flex-start;
+      padding-left 35px;
+      .title
+        line-height 36px;
+        color: #666666;
+        font-size: 16px;
+        font-weight 700;
+      select
+        height: 30px;
+        width: 160px;
+        margin-left: 20px;
+        padding: 0 0 0 50px;
+        border-radius 4px;
+        border 1px solid #e4e8ed;
+        font-size: 16px;
+        text-align center;
   .show-list
-    .server-table
+    .club-table
       border-collapse: collapse;
       border-spacing: 0;
       text-align: center;
@@ -79,26 +66,10 @@
           line-height: 0px;
           .table-btn-wrapper
             display: flex;
+
             justify-content flex-end;
             height: 36px;
             .table-btn
               margin-left: 8px;
-  .btn-wrapper
-    display: flex;
-    margin-top 50px;
-    align-items flex-end;
-    justify-content space-between;
-    .btn-all
-      flex-basis 30;
-    .sub-wrapper
-      display: flex;
-      .sub-button
-        padding-left 10px;
   .nav-footer
     margin-top: 20px;
-  .footer
-    position absolute;
-    font-size: 12px;
-    right 10px;
-    bottom: 10px;
-    color: #7e90a3;

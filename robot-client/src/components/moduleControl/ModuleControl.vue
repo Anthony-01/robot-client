@@ -63,7 +63,7 @@
         currentTable: [{
           isSelect: false
         }],
-        actionDialog: true
+        actionDialog: false
       }
     },
     methods: {

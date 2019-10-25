@@ -81,23 +81,194 @@
                 </div>
                 <div class="niu-right">
                   <table class="niu-table">
-                    <tr>
+                    <tr class="table-row table-title">
                       <th>模式A</th>
                       <th>模式B</th>
                       <th>模式C</th>
                       <th>模式D</th>
                     </tr>
-                    <tr v-for="item in [1,1,1,1]">
-                      <td>60%</td>
-                      <td>25%</td>
-                      <td>10%</td>
-                      <td>50%</td>
+                    <tr v-for="item in [1,1,1,1]" class="table-row">
+                      <td class="row-item">60%</td>
+                      <td class="row-item">25%</td>
+                      <td class="row-item">10%</td>
+                      <td class="row-item">50%</td>
                     </tr>
                   </table>
                 </div>
               </div>
 
             </div>
+          </div>
+          <div class="two" v-for="(item, index) in module">
+            <div class="left two-item">
+              <div class="back-split">模式{{item[0]}}</div>
+              <div class="module-content">
+                <div class="qiang-option content-item">
+                  <div class="title">
+                    <div class="txt">
+                      <span>抢庄选项:</span>
+                    </div>
+                    <div class="option">
+                      <input type="checkbox" class="toggle select-option" id="buqiang1"><label for="buqiang1">不抢</label>
+                    </div>
+                  </div>
+                  <div class="qiang-item">
+                    <input type="checkbox" class="toggle select-option">
+                    <select name="" >
+                      <option value="0">任意牌型</option>
+                      <option value="1">牌型一</option>
+                      <option value="2">牌型二</option>
+                    </select>
+                  </div>
+                  <div class="qiang-item">
+                    <input type="checkbox" class="toggle select-option">
+                    <select name="">
+                      <option value="0">抢 2 倍</option>
+                      <option value="1">抢 4 倍</option>
+                      <option value="2">抢 8 倍</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="tui-option  content-item">
+                  <div class="title">
+                    <div class="txt">
+                      <span>推注选项:</span>
+                    </div>
+                    <div class="option">
+                      <input type="checkbox" class="toggle select-option" :id="'butui' + index"><label :for="'butui' + index">不推注</label>
+                    </div>
+                  </div>
+                  <div class="tui-item">
+                    <input type="checkbox" class="toggle select-option">
+                    <select name="" >
+                      <option value="0">任意牌型推注</option>
+                      <option value="1">牌型一</option>
+                      <option value="2">牌型二</option>
+                    </select>
+                  </div>
+
+                </div>
+                <div class="xia-option  content-item">
+                  <div class="title">
+                    <div class="txt">
+                      <span>下庄选项:</span>
+                    </div>
+                    <div class="option">
+                      <input type="checkbox" class="toggle select-option" :id="'difen1' + index"><label :for="'difen1' + index">下底分</label>
+                    </div>
+
+                  </div>
+                  <div class="xia-item two-option">
+                    <div class="option-wrapper">
+                      <div class="option">
+                        <input type="checkbox" class="toggle select-option" :id="'difen2' + index"><label :for="'difen2' + index">2 倍</label>
+                      </div>
+                      <div class="option">
+                        <input type="checkbox" class="toggle select-option" :id="'difen3' + index"><label :for="'difen3' + index">4 倍</label>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="xia-item">
+                    <input type="checkbox" class="toggle select-option">
+                    <select name="" >
+                      <option value="0">任意牌型推注</option>
+                      <option value="1">牌型一</option>
+                      <option value="2">牌型二</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="right two-item">
+              <div class="back-split">模式{{item[1]}}</div>
+              <div class="module-content">
+                <div class="qiang-option content-item">
+                  <div class="title">
+                    <div class="txt">
+                      <span>抢庄选项:</span>
+                    </div>
+                    <div class="option">
+                      <input type="checkbox" class="toggle select-option" id="buqiang"><label for="buqiang">不抢</label>
+                    </div>
+                  </div>
+                  <div class="qiang-item">
+                    <input type="checkbox" class="toggle select-option">
+                    <select name="" >
+                      <option value="0">任意牌型</option>
+                      <option value="1">牌型一</option>
+                      <option value="2">牌型二</option>
+                    </select>
+                  </div>
+                  <div class="qiang-item">
+                    <input type="checkbox" class="toggle select-option">
+                    <select name="">
+                      <option value="0">抢 2 倍</option>
+                      <option value="1">抢 4 倍</option>
+                      <option value="2">抢 8 倍</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="tui-option  content-item">
+                  <div class="title">
+                    <div class="txt">
+                      <span>推注选项:</span>
+                    </div>
+                    <div class="option">
+                      <input type="checkbox" class="toggle select-option" id="butui"><label for="butui">不推注</label>
+                    </div>
+                  </div>
+                  <div class="tui-item">
+                    <input type="checkbox" class="toggle select-option">
+                    <select name="" >
+                      <option value="0">任意牌型推注</option>
+                      <option value="1">牌型一</option>
+                      <option value="2">牌型二</option>
+                    </select>
+                  </div>
+
+                </div>
+                <div class="xia-option  content-item">
+                  <div class="title">
+                    <div class="txt">
+                      <span>下庄选项:</span>
+                    </div>
+                    <div class="option">
+                      <input type="checkbox" class="toggle select-option" id="difen1"><label for="difen1">下底分</label>
+                    </div>
+
+                  </div>
+                  <div class="xia-item two-option">
+                    <div class="option-wrapper">
+                      <div class="option">
+                        <input type="checkbox" class="toggle select-option" id="difen2"><label for="difen2">2 倍</label>
+                      </div>
+                      <div class="option">
+                        <input type="checkbox" class="toggle select-option" id="difen3"><label for="difen3">4 倍</label>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="xia-item">
+                    <input type="checkbox" class="toggle select-option">
+                    <select name="" >
+                      <option value="0">任意牌型推注</option>
+                      <option value="1">牌型一</option>
+                      <option value="2">牌型二</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="remarks">
+            <div class="title">
+              <span>备注:</span>
+            </div>
+            <textarea width="70%" height="85" wrap="virtual" class="remarks-box"></textarea>
+          </div>
+          <div class="btn-close">
+            <my-button :commonSrc="agreeSrc" class="agree-btn" eventName="agree-event" @agree-event="_close"></my-button>
           </div>
         </div>
       </el-dialog>
@@ -116,7 +287,11 @@
         timeOffline: null,
         clubId: 123129,
         agreeSrc: "btn_agree",
-        closeSrc: "btn_close"
+        closeSrc: "btn_close",
+        module: [
+          ["A", "B"],
+          ["C", "D"]
+        ]
       }
     },
     methods: {
