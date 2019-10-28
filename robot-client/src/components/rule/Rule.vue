@@ -144,6 +144,13 @@
             <div class="left one-item two-left">
               <div class="back-split">未输完加分(未进行游戏)</div>
               <div class="module-content">
+                <div class="left-item">
+                  <div class="item-left">
+                    <span class="txt">小于</span>
+                    <input type="text" value="50" class="item-input">
+                    <span class="txt">倍积分</span>
+                  </div>
+                </div>
                 <div class="item">
                   <table class="item-table">
                     <tr class="item-title">

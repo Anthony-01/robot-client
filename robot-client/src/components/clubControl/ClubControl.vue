@@ -10,7 +10,8 @@
         <span class="search-txt">俱乐部名称：</span>
         <input type="text" class="club-name" readonly="readonly" v-model="clubName">
         <div class="btn-config">
-          <img src="./resource/btn_config.png" @click="onConfig" class="img-btn-config">
+          <!--<img src="./resource/btn_config.png" @click="onConfig" class="img-btn-config">-->
+          <my-button :commonSrc="configSrc" class="img-btn-config" eventName="onConfig" @onConfig="onConfig"></my-button>
         </div>
       </div>
       <div class="show-list">
@@ -31,14 +32,14 @@
               v-model="item.isSelect"
               @click="_inputEvent($event,index)"
             /></td>
-            <td class="table-body-item" width="70"  style="flex-grow:2">复选框</td>
-            <td class="table-body-item" width="70"  style="flex-grow:2">复选框</td>
-            <td class="table-body-item" width="70"  style="flex-grow:3">复选框</td>
-            <td class="table-body-item" width="70"  style="flex-grow:2">复选框</td>
+            <td class="table-body-item" width="70"  style="flex-grow:2">{{item.index}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:2">{{item.id}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:3">{{item.nickName}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:2">{{item.robotCount}}</td>
             <td class="table-body-item table-item-operate" width="70"  style="flex-grow:8">
               <div height="36" class="table-btn-wrapper">
                 <my-button class="table-btn"  :commonSrc="editSrc"></my-button>
-                <my-button class="table-btn" height="36" :commonSrc="deleteSrc"></my-button>
+                <my-button class="table-btn" height="36" :commonSrc="deleteSrc"  :targetIndex="index" eventName="deleteClub" @deleteClub="deleteClub"></my-button>
               </div>
 
             </td>
@@ -47,24 +48,19 @@
       </div>
       <div class="btn-wrapper">
         <div class="btn-all"><input type="checkbox" @click="_cancel" v-model="btnCancel"><label >{{infoTip}}</label></div>
-        <my-button :commonSrc="deleteAllSrc"></my-button>
+        <my-button :commonSrc="deleteAllSrc"  eventName="deleteAll" @deleteAll="deleteAll" ></my-button>
       </div>
       <nav-footer class="nav-footer"></nav-footer>
+<!--
       <div class="footer">服务器修改模板，里面可修改机器人属性，支持跨页全选操作。机器人带的积分，除非输光，第二次上线时，最好保持上次的值，另外可设定一个最高值，比如10万，高于则可回收。</div>
+-->
     </div>
 </template>
 
 <script>
   import NavFooter from '../navFooter/NavFooter.vue';
   import MyButton from '../myButton/MyButton.vue';
-//  import DeleteAllImg0 from '@@/btn/btn_delete_all_0.png';
-//  import DeleteAllImg1 from '@@/btn/btn_delete_all_1.png';
-//  import EditImg0 from '@@/btn/btn_edit_0.png';
-//  import EditImg1 from '@@/btn/btn_edit_1.png';
-//  import DeleteImg0 from '@@/btn/btn_delete_0.png';
-//  import DeleteImg1 from '@@/btn/btn_delete_1.png';
 
-  //
 
   export default {
     data() {
@@ -74,48 +70,57 @@
         editSrc: "btn_edit",
         deleteSrc: "btn_delete",
         deleteAllSrc: "btn_delete_all",
+        configSrc: "btn_config",
         infoTip: "全选",
         btnCancel: false,
         currentTable: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄',
+          index: '001',
+          id: '1688888',
+          nickName: '拉风的大蘑菇',
+          robotCount: "188",
           isSelect: false
         }, {
-          date: '2016-05-02',
-          name: '赵小四',
-          address: '上海市普陀区金沙江路 1518 弄',
+          index: '002',
+          id: '1688888',
+          nickName: '拉风的大蘑菇',
+          robotCount: "188",
           isSelect: false
         }, {
-          date: '2016-05-04',
-          name: '李小狗',
-          address: '上海市普陀区金沙江路 1518 弄',
+          index: '003',
+          id: '1688888',
+          nickName: '拉风的大蘑菇',
+          robotCount: "188",
           isSelect: false
         }, {
-          date: '2016-05-04',
-          name: '李小狗',
-          address: '上海市普陀区金沙江路 1518 弄',
+          index: '004',
+          id: '1688888',
+          nickName: '拉风的大蘑菇',
+          robotCount: "188",
           isSelect: false
         }, {
-          date: '2016-05-04',
-          name: '李小狗',
-          address: '上海市普陀区金沙江路 1518 弄',
+          index: '005',
+          id: '1688888',
+          nickName: '拉风的大蘑菇',
+          robotCount: "188",
           isSelect: false
         }, {
-          date: '2016-05-04',
-          name: '李小狗',
-          address: '上海市普陀区金沙江路 1518 弄',
-          isSelect: true
-        }, {
-          date: '2016-05-04',
-          name: '李小狗',
-          address: '上海市普陀区金沙江路 1518 弄',
+          index: '006',
+          id: '1688888',
+          nickName: '拉风的大蘑菇',
+          robotCount: "188",
           isSelect: false
         }, {
-          date: '2016-05-04',
-          name: '李小狗',
-          address: '上海市普陀区金沙江路 1518 弄',
-          isSelect: true
+          index: '007',
+          id: '1688888',
+          nickName: '拉风的大蘑菇',
+          robotCount: "188",
+          isSelect: false
+        }, {
+          index: '008',
+          id: '1688888',
+          nickName: '拉风的大蘑菇',
+          robotCount: "188",
+          isSelect: false
         }]
       }
     },
@@ -156,6 +161,25 @@
         this.currentTable.forEach(item => {
           item.isSelect = this.btnCancel;
         });
+      },
+      deleteClub(index) {
+        console.log("删除俱乐部:", index);
+        this.currentTable.splice(index, 1);
+      },
+      deleteAll() {
+        let deleteVec = [];
+        this.currentTable.forEach(item => {
+          if (item.isSelect == true) {
+            deleteVec.push(item);
+          }
+        });
+        deleteVec.forEach(item => {
+          let index = this.currentTable.indexOf(item);
+          if (index >= 0) {
+            this.currentTable.splice(index, 1);
+          }
+        })
+
       }
 
     },

@@ -12,10 +12,10 @@
         </div>
 
         <div class="buttons">
-          <my-button class="btn-build main-button" :commonSrc="clubSrc"></my-button>
-          <my-button class="btn-build main-button" :commonSrc="buildSrc"></my-button>
-          <my-button class="btn-module main-button" :commonSrc="moduleSrc"></my-button>
-          <my-button class="btn_rule main-button" :commonSrc="ruleSrc"></my-button>
+          <my-button class="btn-build main-button" :commonSrc="clubSrc" event-name="clubToggle" @clubToggle="changeControl" :targetIndex="1"></my-button>
+          <my-button class="btn-build main-button" :commonSrc="buildSrc" event-name="buildToggle" @buildToggle="changeControl" :targetIndex="2"></my-button>
+          <my-button class="btn-module main-button" :commonSrc="moduleSrc" event-name="moduleToggle" @moduleToggle="changeControl" :targetIndex="3"></my-button>
+          <my-button class="btn_rule main-button" :commonSrc="ruleSrc" event-name="ruleToggle" @ruleToggle="changeControl" :targetIndex="4"></my-button>
         </div>
       </div>
       <div class="show-list">
@@ -38,15 +38,15 @@
               v-model="item.isSelect"
               @click="_inputEvent($event,index)"
             /></td>
-            <td class="table-body-item" width="70"  style="flex-grow:2">复选框</td>
-            <td class="table-body-item" width="70"  style="flex-grow:3">复选框</td>
-            <td class="table-body-item" width="70"  style="flex-grow:3">复选框</td>
-            <td class="table-body-item" width="70"  style="flex-grow:2">复选框</td>
-            <td class="table-body-item" width="70"  style="flex-grow:3">复选框</td>
+            <td class="table-body-item" width="70"  style="flex-grow:2">{{item.batch}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:3">{{item.id}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:3">{{item.nickName}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:2">{{item.number}}</td>
+            <td class="table-body-item server-time" width="70"  style="flex-grow:3">{{item.serverTime}}</td>
             <td class="table-body-item table-item-operate" width="70"  style="flex-grow:5">
               <div height="36" class="table-btn-wrapper">
                 <my-button class="table-btn"  :commonSrc="editSrc"></my-button>
-                <my-button class="table-btn" height="36" :commonSrc="deleteSrc"></my-button>
+                <my-button class="table-btn" height="36" :commonSrc="deleteSrc"  :targetIndex="index" eventName="deleteBatch" @deleteBatch="deleteBatch"></my-button>
               </div>
 
             </td>
@@ -55,10 +55,10 @@
       </div>
       <div class="btn-wrapper">
         <div class="btn-all"><input type="checkbox" @click="_cancel" v-model="btnCancel"><label >{{infoTip}}</label></div>
-        <my-button :commonSrc="deleteAllSrc"></my-button>
+        <my-button :commonSrc="deleteAllSrc" eventName="deleteAll" @deleteAll="deleteAll" ></my-button>
       </div>
       <nav-footer class="nav-footer"></nav-footer>
-      <div class="footer">陪玩管理主界面:用于显示整体信息和机器人所在俱乐部的批次和信息</div>
+      <!--<div class="footer">陪玩管理主界面:用于显示整体信息和机器人所在俱乐部的批次和信息</div>-->
     </div>
 
 </template>
@@ -69,21 +69,6 @@
   import NavFooter from '../navFooter/NavFooter.vue';
   import TestButton from './TestButton.vue'
 
-  //导入图片
-//  import BuildImg0 from '@@/btn/btn_build_0.png';
-//  import BuildImg1 from '@@/btn/btn_build_1.png';
-//  import ModuleImg0 from '@@/btn/btn_module_0.png';
-//  import ModuleImg1 from '@@/btn/btn_module_1.png';
-//  import RuleImg0 from '@@/btn/btn_rule_0.png';
-//  import RuleImg1 from '@@/btn/btn_rule_1.png';
-//  import DeleteAllImg0 from '@@/btn/btn_delete_all_0.png';
-//  import DeleteAllImg1 from '@@/btn/btn_delete_all_1.png';
-//  import EditImg0 from '@@/btn/btn_edit_0.png';
-//  import EditImg1 from '@@/btn/btn_edit_1.png';
-//  import DeleteImg0 from '@@/btn/btn_delete_0.png';
-//  import DeleteImg1 from '@@/btn/btn_delete_1.png';
-//  import ClubImg0 from '@@/btn/btn_club_0.png';
-//  import ClubImg1 from '@@/btn/btn_club_1.png';
 
   const ALL = "全选";
   const CANCEL = "取消";
@@ -94,35 +79,6 @@
         totalMaj: 188,
         hadMaj: 0,
         notMaj: 0,
-        //按钮名称
-//        buildSrc: {
-//          src0: BuildImg0,
-//          src1: BuildImg1
-//        },
-//        moduleSrc: {
-//          src0: ModuleImg0,
-//          src1: ModuleImg1
-//        },
-//        ruleSrc: {
-//          src0: RuleImg0,
-//          src1: RuleImg1
-//        },
-//        deleteAllSrc: {
-//          src0: DeleteAllImg0,
-//          src1: DeleteAllImg1
-//        },
-//        editSrc: {
-//          src0: EditImg0,
-//          src1: EditImg1
-//        },
-//        deleteSrc: {
-//          src0: DeleteImg0,
-//          src1: DeleteImg1
-//        },
-//        clubSrc: {
-//          src0: ClubImg0,
-//          src1: ClubImg1
-//        },
         buildSrc: "btn_build",
         moduleSrc: "btn_module",
         ruleSrc: "btn_rule",
@@ -133,45 +89,61 @@
         infoTip: ALL,
         btnCancel: false,
         currentTable: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄',
+          batch: '001',
+          id: '1268888',
+          nickName: '俱乐部昵称1',
+          number: 66,
+          serverTime: "7:00—18:00",
           isSelect: false
         }, {
-          date: '2016-05-02',
-          name: '赵小四',
-          address: '上海市普陀区金沙江路 1518 弄',
+          batch: '002',
+          id: '1268888',
+          nickName: '俱乐部昵称2',
+          number: 166,
+          serverTime: "7:00—18:00",
           isSelect: false
         }, {
-          date: '2016-05-04',
-          name: '李小狗',
-          address: '上海市普陀区金沙江路 1518 弄',
+          batch: '003',
+          id: '1268888',
+          nickName: '俱乐部昵称3',
+          number: 366,
+          serverTime: "7:00—18:00",
           isSelect: false
         }, {
-          date: '2016-05-04',
-          name: '李小狗',
-          address: '上海市普陀区金沙江路 1518 弄',
+          batch: '004',
+          id: '1268888',
+          nickName: '俱乐部昵称4',
+          serverTime: "7:00—18:00",
+          number: 466,
           isSelect: false
         }, {
-          date: '2016-05-04',
-          name: '李小狗',
-          address: '上海市普陀区金沙江路 1518 弄',
+          batch: '005',
+          id: '1268888',
+          nickName: '俱乐部昵称5',
+          number: 566,
+          serverTime: "7:00—18:00",
           isSelect: false
         }, {
-          date: '2016-05-04',
-          name: '李小狗',
-          address: '上海市普陀区金沙江路 1518 弄',
-          isSelect: true
-        }, {
-          date: '2016-05-04',
-          name: '李小狗',
-          address: '上海市普陀区金沙江路 1518 弄',
+          batch: '006',
+          id: '1268888',
+          nickName: '俱乐部昵称6',
+          number: 666,
+          serverTime: "7:00—18:00",
           isSelect: false
         }, {
-          date: '2016-05-04',
-          name: '李小狗',
-          address: '上海市普陀区金沙江路 1518 弄',
-          isSelect: true
+          batch: '007',
+          id: '1268888',
+          nickName: '俱乐部昵称7',
+          number: 766,
+          serverTime: "7:00—18:00",
+          isSelect: false
+        }, {
+          batch: '008',
+          id: '1268888',
+          nickName: '俱乐部昵称8',
+          number: 866,
+          serverTime: "7:00—18:00",
+          isSelect: false
         }]
       }
     },
@@ -183,7 +155,6 @@
         console.log(event, index);
         //检测选项，更新全选按钮
         this.$nextTick(() => {
-//          this._checkAll();
         });
 
       },
@@ -192,20 +163,30 @@
         this.currentTable.forEach(item => {
           item.isSelect = this.btnCancel;
         });
+      },
+      changeControl(type) {
+        if (type < 1 || type > 4) return;
+        this.$emit("changeNav", type);
+      },
+      deleteBatch(index) {
+        console.log("删除批次:", index);
+        this.currentTable.splice(index, 1);
+      },
+      deleteAll() {
+        let deleteVec = [];
+        this.currentTable.forEach(item => {
+          if (item.isSelect == true) {
+            deleteVec.push(item);
+          }
+        });
+        deleteVec.forEach(item => {
+          let index = this.currentTable.indexOf(item);
+          if (index >= 0) {
+            this.currentTable.splice(index, 1);
+          }
+        })
+
       }
-//      _checkAll() {
-//        let result = this.currentTable.every(item => {
-//          return item.isSelect == true;
-//        });
-//        console.log("是否变成取消:", result);
-//        if (result) {
-//          this.infoTip = CANCEL;
-//          this.btnCancel = true;
-//        } else {
-//          this.infoTip = ALL;
-//          this.btnCancel = false;
-//        }
-//      }
     },
     components: {
       'my-button': MyButton,

@@ -32,11 +32,11 @@
         </el-container>-->
       <div style="width:100%;" ref="mainWrapper" class="main-wrapper">
           <div class="aside">
-            <nav-menu class="menu" :activeIndex="activeIndex" @change="_changeRouter"></nav-menu>
+            <nav-menu class="menu" :activeIndex="activeIndex" @change="_changeRouter" ref="nav"></nav-menu>
           </div>
           <div class="content-wrapper">
             <!--使用路由管理-->
-            <router-view class="show-view"></router-view>
+            <router-view class="show-view" @changeNav="changeNav"></router-view>
           </div>
 
 
@@ -75,6 +75,10 @@
       },
       _changeRouter(type) {
 //        console.log('切换路由', type);
+      },
+      changeNav(type) {
+        console.log("主页面切换:", type);
+        this.$refs.nav.changeIndex(type);
       }
     },
     components: {

@@ -1,7 +1,7 @@
 <template>
   <div class="rule-wrapper">
     <div class="header">
-      <img src="@@/btn/title_club_server.png" class="header-title">
+      <img src="@@/btn/title_rule.png" class="header-title">
     </div>
     <div class="top">
       <div class="left">
@@ -24,8 +24,8 @@
           <td class="table-body-item" width="70"  style="flex-grow:10">复选框</td>
           <td class="table-body-item table-item-operate" width="70"  style="flex-grow:3">
             <div height="36" class="table-btn-wrapper">
-              <my-button class="table-btn"  :commonSrc="editSrc"></my-button>
-              <my-button class="table-btn" height="36" :commonSrc="deleteSrc"></my-button>
+              <my-button class="table-btn"  :commonSrc="editSrc"    :targetIndex="index" eventName="editModule" @editModule="editModule"></my-button>
+              <my-button class="table-btn" height="36" :commonSrc="deleteSrc" :targetIndex="index" eventName="deleteModule" @deleteModule="deleteModule"></my-button>
             </div>
 
           </td>
@@ -54,7 +54,7 @@
         currentTable: [{
           isSelect: false
         }],
-        ruleDialog: true
+        ruleDialog: false
       }
     },
     methods: {
@@ -63,6 +63,13 @@
       },
       closeRuleDialog() {
         this.$refs.RuleDialog.closeDialog();
+      },
+      deleteModule(index) {
+        console.log("删除模板:", index);
+        this.currentTable.splice(index, 1);
+      },
+      editModule(index) {
+        this.$refs.RuleDialog.openDialog();
       }
     },
     components: {

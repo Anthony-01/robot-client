@@ -38,7 +38,7 @@
       },
       onClick() {
         if (this.eventName.length === 0) return;
-        this.$emit(this.eventName);
+        this.$emit(this.eventName, this.targetIndex);
       }
     },
     props: {
@@ -49,6 +49,10 @@
       eventName: {
         type: String,
         default: ""
+      },
+      targetIndex: {
+        type: Number,
+        default: 0
       }
     }
   }

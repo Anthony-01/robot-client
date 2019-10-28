@@ -11,7 +11,8 @@
         <span class="search-txt">俱乐部名称：</span>
         <input type="text" class="club-name" readonly="readonly" v-model="clubName">
         <div class="btn-config">
-          <img src="@@/btn/btn_config.png" @click="onConfig" class="img-btn-config">
+          <!--<img src="@@/btn/btn_config.png" @click="onConfig" class="img-btn-config">-->
+          <my-button :commonSrc="configSrc" class="img-btn-config" eventName="onConfig" @onConfig="onConfig"></my-button>
         </div>
       </div>
       <div class="buttons">
@@ -22,11 +23,19 @@
         <table class="server-table" width="100%">
           <tr class="table-row table-title">
             <th class="table-title-item" width="25" style="flex-grow:1">      </th>
-            <th class="table-title-item" width="70" style="flex-grow:2">序号</th>
-            <th class="table-title-item" width="70" style="flex-grow:2">俱乐部ID</th>
-            <th class="table-title-item" width="70" style="flex-grow:3">俱乐部昵称</th>
-            <th class="table-title-item" width="70" style="flex-grow:2">机器人数量</th>
-            <th class="table-title-item" width="70" style="flex-grow:8">操作项</th>
+            <th class="table-title-item" width="70" style="flex-grow:1">序号</th>
+            <th class="table-title-item" width="70" style="flex-grow:2">ID</th>
+            <th class="table-title-item" width="70" style="flex-grow:3">昵称</th>
+            <th class="table-title-item" width="70" style="flex-grow:2">游戏1</th>
+            <th class="table-title-item" width="70" style="flex-grow:2">行为模式1</th>
+            <th class="table-title-item" width="70" style="flex-grow:2">游戏2</th>
+            <th class="table-title-item" width="70" style="flex-grow:2">行为模式2</th>
+            <th class="table-title-item" width="70" style="flex-grow:2">游戏3</th>
+            <th class="table-title-item" width="70" style="flex-grow:2">行为模式3</th>
+            <th class="table-title-item" width="70" style="flex-grow:2">加分规则</th>
+            <th class="table-title-item" width="70" style="flex-grow:2">服务时间</th>
+            <th class="table-title-item" width="70" style="flex-grow:2">积分</th>
+            <th class="table-title-item" width="70" style="flex-grow:8"></th>
           </tr>
           <tr v-for="(item, index) in batchAry" class="table-row table-body">
             <td class="table-body-item" width="25"  style="flex-grow:1"><input
@@ -36,14 +45,22 @@
               v-model="item.isSelect"
               @click="_inputEvent($event,index)"
             /></td>
-            <td class="table-body-item" width="70"  style="flex-grow:2">复选框</td>
-            <td class="table-body-item" width="70"  style="flex-grow:2">复选框</td>
-            <td class="table-body-item" width="70"  style="flex-grow:3">复选框</td>
-            <td class="table-body-item" width="70"  style="flex-grow:2">复选框</td>
+            <td class="table-body-item" width="70"  style="flex-grow:1">{{item.index}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:2">{{item.id}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:3">{{item.nickName}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:2">{{item.game1}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:2">{{item.action1}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:2">{{item.game2}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:2">{{item.action2}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:2">{{item.game3}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:2">{{item.action3}}</td>
+            <td class="table-body-item" width="70"  style="flex-grow:2">{{item.rule}}</td>
+            <td class="table-body-item blue-txt" width="70"  style="flex-grow:2">{{item.serverTime}}</td>
+            <td class="table-body-item blue-txt" width="70"  style="flex-grow:2">{{item.score}}</td>
             <td class="table-body-item table-item-operate" width="70"  style="flex-grow:8">
               <div height="36" class="table-btn-wrapper">
-                <my-button class="table-btn"  :commonSrc="editSrc"></my-button>
-                <my-button class="table-btn" height="36" :commonSrc="deleteSrc"></my-button>
+                <my-button class="table-btn"  :commonSrc="editSrc" :targetIndex="index" eventName="editRobot" @editRobot="editRobot"></my-button>
+                <my-button class="table-btn" height="36" :commonSrc="deleteSrc" :targetIndex="index" eventName="deleteRobot" @deleteRobot="deleteRobot"></my-button>
               </div>
 
             </td>
@@ -54,12 +71,14 @@
         <div class="btn-all"><input type="checkbox" @click="_cancel" v-model="btnCancel"><label >{{infoTip}}</label></div>
         <div class="sub-wrapper">
           <my-button :commonSrc="modifyAllSrc" class="sub-button" eventName="modify-event" @modify-event="modifyEvent"></my-button>
-          <my-button :commonSrc="deleteAllSrc" class="sub-button"></my-button>
+          <my-button :commonSrc="deleteAllSrc" class="sub-button" eventName="deleteAll" @deleteAll="deleteAll" ></my-button>
         </div>
 
       </div>
       <nav-footer class="nav-footer"></nav-footer>
+<!--
       <div class="footer">服务器修改模板，里面可修改机器人属性，支持跨页全选操作。机器人带的积分，除非输光，第二次上线时，最好保持上次的值，另外可设定一个最高值，比如10万，高于则可回收。</div>
+-->
       <build-dialog :dialogVisible="buildDialog" @closeDialog="closeDialog" ref="buildDialog"></build-dialog>
       <batch-dialog :batchVisible="batchAddDialog" @closeBatchDialog="closeBatchDialog" ref="batchDialog"></batch-dialog>
       <modify-dialog :modifyDialog="modifyAllDialog" @closeModifyDialog="closeModifyDialog" ref="modifyDialog"></modify-dialog>
@@ -83,8 +102,122 @@
         deleteSrc: "btn_delete",
         deleteAllSrc: "btn_delete_all",
         modifyAllSrc: "btn_modify_all",
+        configSrc: "btn_config",
         //表格数据
-        batchAry: [],
+        batchAry: [
+          {
+            index: "001",
+            id: "1688888",
+            nickName: "拉风大蘑菇",
+            game1: "牛牛",
+            action1: "土豪1",
+            game2: "三公",
+            action2: "土豪1",
+            game3: "无",
+            action3: "无",
+            rule: "大土豪1",
+            serverTime: "7:00 — 10:00",
+            score: "3000 - 10000"
+          },
+          {
+            index: "002",
+            id: "1688888",
+            nickName: "拉风大蘑菇",
+            game1: "牛牛",
+            action1: "土豪1",
+            game2: "三公",
+            action2: "土豪1",
+            game3: "无",
+            action3: "无",
+            rule: "大土豪1",
+            serverTime: "7:00 — 10:00",
+            score: "3000 - 10000"
+          },
+          {
+            index: "003",
+            id: "1688888",
+            nickName: "拉风大蘑菇",
+            game1: "牛牛",
+            action1: "土豪1",
+            game2: "三公",
+            action2: "土豪1",
+            game3: "无",
+            action3: "无",
+            rule: "大土豪1",
+            serverTime: "7:00 — 10:00",
+            score: "3000 - 10000"
+          },
+          {
+            index: "004",
+            id: "1688888",
+            nickName: "拉风大蘑菇",
+            game1: "牛牛",
+            action1: "土豪1",
+            game2: "三公",
+            action2: "土豪1",
+            game3: "无",
+            action3: "无",
+            rule: "大土豪1",
+            serverTime: "7:00 — 10:00",
+            score: "3000 - 10000"
+          },
+          {
+            index: "005",
+            id: "1688888",
+            nickName: "拉风大蘑菇",
+            game1: "牛牛",
+            action1: "土豪1",
+            game2: "三公",
+            action2: "土豪1",
+            game3: "无",
+            action3: "无",
+            rule: "大土豪1",
+            serverTime: "7:00 — 10:00",
+            score: "3000 - 10000"
+          },
+          {
+            index: "006",
+            id: "1688888",
+            nickName: "拉风大蘑菇",
+            game1: "牛牛",
+            action1: "土豪1",
+            game2: "三公",
+            action2: "土豪1",
+            game3: "无",
+            action3: "无",
+            rule: "大土豪1",
+            serverTime: "7:00 — 10:00",
+            score: "3000 - 10000"
+          },
+          {
+            index: "007",
+            id: "1688888",
+            nickName: "拉风大蘑菇",
+            game1: "牛牛",
+            action1: "土豪1",
+            game2: "三公",
+            action2: "土豪1",
+            game3: "无",
+            action3: "无",
+            rule: "大土豪1",
+            serverTime: "7:00 — 10:00",
+            score: "3000 - 10000"
+          },
+          {
+            index: "008",
+            id: "1688888",
+            nickName: "拉风大蘑菇",
+            game1: "牛牛",
+            action1: "土豪1",
+            game2: "三公",
+            action2: "土豪1",
+            game3: "无",
+            action3: "无",
+            rule: "大土豪1",
+            serverTime: "7:00 — 10:00",
+            score: "3000 - 10000"
+          }
+        ],
         infoTip: "全选",
         btnCancel: false,
         //dialog
@@ -94,19 +227,19 @@
       }
     },
     mounted() {
-      setTimeout(() => {
-        this.batchAry = [
-          {
-            isSelect: false
-          },
-          {
-            isSelect: true
-          },
-          {
-            isSelect: false
-          }
-        ]
-      }, 2000)
+//      setTimeout(() => {
+//        this.batchAry = [
+//          {
+//            isSelect: false
+//          },
+//          {
+//            isSelect: true
+//          },
+//          {
+//            isSelect: false
+//          }
+//        ]
+//      }, 2000)
     },
     methods: {
       onConfig() {
@@ -135,7 +268,33 @@
       },
       closeModifyDialog() {
         this.$refs.modifyDialog.closeDialog();
-      }
+      },
+      editRobot(index) {
+        console.log("编辑机器人:", index);
+        this.$refs.buildDialog.openDialog();
+      },
+      deleteRobot(index) {
+        console.log("删除机器人:", index);
+        this.batchAry.splice(index, 1);
+      },
+      deleteAll() {
+        let deleteVec = [];
+        this.batchAry.forEach(item => {
+          if (item.isSelect == true) {
+            deleteVec.push(item);
+          }
+        });
+        deleteVec.forEach(item => {
+          let index = this.batchAry.indexOf(item);
+          if (index >= 0) {
+            this.batchAry.splice(index, 1);
+          }
+        })
+
+      },
+      _inputEvent(event, type) {
+
+      },
     },
     components: {
       'my-button': MyButton,

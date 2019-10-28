@@ -44,7 +44,6 @@
       }
     },
     mounted() {
-//      console.log(this.$router);
       console.log(this.$route);
       let name = this.$route.fullPath.replace('/main/',"");
       console.log(name);
@@ -101,6 +100,9 @@
         this.currentIndex = type;
         this.$emit("change", type);
         this.$router.push({path: `/main/${name}`});
+      },
+      changeIndex(index) {
+        this._selectMenu(index, null);
       }
     }
   }
