@@ -35,7 +35,16 @@
 
 <script>
 
-  import writeAuthCode from '../../utils/checkCha/checkCha.js'
+  import writeAuthCode from '../../utils/checkCha/checkCha.js';
+  import {Test} from '../../utils/test';
+  import {ttt} from '../../utils/web/MyTs';
+  //如何实现通信模块
+  //通信模块的对外接口
+  //通信存在的时候则进入main页面
+  //不存在的时候就login页面并且报错
+  //logonFrame如何调动组件的（×）
+  //logonFrame必须和组件结合在一起onGameMessage和logonFrame如何结合在一起，自定义事件的形式通知？
+  //每个组件里面new一个Frame，frame暴露接口来和Vue组件通信
   export default {
     data() {
       return {
@@ -46,13 +55,18 @@
       }
     },
     created() {
-
+      let one = Test.getIns();
+      one.say();
+      Test.setNum(10086);
+      one.say();
+      let tt = new ttt.MyTs();
     },
     mounted() {
       //等待dom更新以后再调用
       this.$nextTick(() => {
         this._getCheckcha();
       })
+      console.log(this.$store.state.test);
     },
     methods: {
       _login() {

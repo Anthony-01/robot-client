@@ -1,6 +1,5 @@
 <template>
     <div class="wrapper">
-      <!--<el-container style="height:100%;width:100%;"></el-container>-->
       <div class="header" ref="header">
         <img src="./resource/login_logo.png" alt="" class="logo">
         <div class="info">
@@ -9,37 +8,21 @@
             <span class="username">拉风的蘑菇</span>
           </div>
           <div class="btn-exit" @click="_exit">
-            <!--<span class="icon"></span>-->
             <i class="icon el-icon-switch-button"></i>
             <span class="text">退出</span>
           </div>
         </div>
 
       </div>
-      <!--<div style="width:100%;" ref="mainWrapper" class="main-wrapper">
-        <el-container width="100%" height="100%">
-          <el-aside width="200px" class="aside">
-            <nav-menu class="menu" :activeIndex="activeIndex"></nav-menu>
-          </el-aside>
-          <el-main>
-            <div class="content">
-              管理界面
-            </div>
-            &lt;!&ndash;使用路由管理&ndash;&gt;
-            <router-link to="" class="show-view"></router-link>
-          </el-main>
-
-        </el-container>-->
       <div style="width:100%;" ref="mainWrapper" class="main-wrapper">
           <div class="aside">
             <nav-menu class="menu" :activeIndex="activeIndex" @change="_changeRouter" ref="nav"></nav-menu>
           </div>
           <div class="content-wrapper">
-            <!--使用路由管理-->
-            <router-view class="show-view" @changeNav="changeNav"></router-view>
+            <keep-alive>
+              <router-view class="show-view" @changeNav="changeNav"></router-view>
+            </keep-alive>
           </div>
-
-
       </div>
 
 
@@ -48,14 +31,19 @@
 </template>
 
 <script>
-//  import Nav from '@/components/nav/Nav';
   import NavMenu from '@/components/nav/NavMenu';
+  import {Test, myNum} from '../../utils/test';
 
   export default {
     data() {
       return {
         activeIndex: 0
       }
+    },
+    created() {
+      let one = Test.getIns();
+      one.say();
+      console.log(myNum);
     },
     mounted() {
       this.$nextTick(() => {

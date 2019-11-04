@@ -25,13 +25,16 @@
             <th class="table-title-item" width="70" style="flex-grow:8">操作项</th>
           </tr>
           <tr v-for="(item, index) in currentTable" class="table-row table-body">
-            <td class="table-body-item" width="25"  style="flex-grow:1"><input
-              name="Fruit"
-              type="checkbox"
-              class="check-input"
-              v-model="item.isSelect"
-              @click="_inputEvent($event,index)"
-            /></td>
+            <td class="table-body-item" width="25"  style="flex-grow:1">
+              <!--<input-->
+              <!--name="Fruit"-->
+              <!--type="checkbox"-->
+              <!--class="check-input"-->
+              <!--v-model="item.isSelect"-->
+              <!--@click="_inputEvent($event,index)"-->
+             <!--/>-->
+              <toggle-button class="check-input" :select="item.isSelect" :index="index" @toggle="toggleBtn"></toggle-button>
+            </td>
             <td class="table-body-item" width="70"  style="flex-grow:2">{{item.index}}</td>
             <td class="table-body-item" width="70"  style="flex-grow:2">{{item.id}}</td>
             <td class="table-body-item" width="70"  style="flex-grow:3">{{item.nickName}}</td>
@@ -47,7 +50,11 @@
         </table>
       </div>
       <div class="btn-wrapper">
-        <div class="btn-all"><input type="checkbox" @click="_cancel" v-model="btnCancel"><label >{{infoTip}}</label></div>
+        <div class="btn-all">
+          <toggle-button class="check-input" :select="btnCancel"  @toggle="_cancel"></toggle-button>
+          <!--<input type="checkbox" @click="_cancel" v-model="btnCancel"><label >{{infoTip}}</label>-->
+          <span class="txt">{{infoTip}}</span>
+        </div>
         <my-button :commonSrc="deleteAllSrc"  eventName="deleteAll" @deleteAll="deleteAll" ></my-button>
       </div>
       <nav-footer class="nav-footer"></nav-footer>
@@ -60,6 +67,7 @@
 <script>
   import NavFooter from '../navFooter/NavFooter.vue';
   import MyButton from '../myButton/MyButton.vue';
+  import ToggleButton from '../myToggleButton/MyToggleButton.vue';
 
 
   export default {
@@ -180,12 +188,17 @@
           }
         })
 
+      },
+      toggleBtn(event) {
+        let index = event.type;
+        this.currentTable[index].isSelect = !this.currentTable[index].isSelect;
       }
 
     },
     components: {
       "nav-footer": NavFooter,
-      "my-button": MyButton
+      "my-button": MyButton,
+      'toggle-button': ToggleButton
     }
   }
 </script>

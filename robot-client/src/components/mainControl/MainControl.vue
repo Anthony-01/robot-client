@@ -31,13 +31,16 @@
             <th class="table-title-item" width="70" style="flex-grow:5"></th>
           </tr>
           <tr v-for="(item, index) in currentTable" class="table-row table-body">
-            <td class="table-body-item" width="25"  style="flex-grow:1"><input
-              name="Fruit"
-              type="checkbox"
-              class="check-input"
-              v-model="item.isSelect"
-              @click="_inputEvent($event,index)"
-            /></td>
+            <td class="table-body-item" width="25"  style="flex-grow:1">
+              <!--<input-->
+              <!--name="Fruit"-->
+              <!--type="checkbox"-->
+              <!--class="check-input"-->
+              <!--v-model="item.isSelect"-->
+              <!--@click="_inputEvent($event,index)"-->
+              <!--/>-->
+              <toggle-button class="check-input" :select="item.isSelect" :index="index" @toggle="toggleBtn"></toggle-button>
+            </td>
             <td class="table-body-item" width="70"  style="flex-grow:2">{{item.batch}}</td>
             <td class="table-body-item" width="70"  style="flex-grow:3">{{item.id}}</td>
             <td class="table-body-item" width="70"  style="flex-grow:3">{{item.nickName}}</td>
@@ -54,11 +57,16 @@
         </table>
       </div>
       <div class="btn-wrapper">
-        <div class="btn-all"><input type="checkbox" @click="_cancel" v-model="btnCancel"><label >{{infoTip}}</label></div>
+        <div class="btn-all">
+          <toggle-button class="check-input" :select="btnCancel"  @toggle="_cancel"></toggle-button>
+          <!--<input type="checkbox" @click="_cancel" v-model="btnCancel"><label >-->
+          <span class="txt">{{infoTip}}</span>
+        </div>
         <my-button :commonSrc="deleteAllSrc" eventName="deleteAll" @deleteAll="deleteAll" ></my-button>
       </div>
       <nav-footer class="nav-footer"></nav-footer>
       <!--<div class="footer">陪玩管理主界面:用于显示整体信息和机器人所在俱乐部的批次和信息</div>-->
+
     </div>
 
 </template>
@@ -68,6 +76,7 @@
   import MyTable from "../table/MyTable.vue";
   import NavFooter from '../navFooter/NavFooter.vue';
   import TestButton from './TestButton.vue'
+  import ToggleButton from '../myToggleButton/MyToggleButton.vue'
 
 
   const ALL = "全选";
@@ -186,13 +195,18 @@
           }
         })
 
+      },
+      toggleBtn(event) {
+        let index = event.type;
+        this.currentTable[index].isSelect = !this.currentTable[index].isSelect;
       }
     },
     components: {
       'my-button': MyButton,
       'my-table': MyTable,
       'nav-footer': NavFooter,
-      'test-button': TestButton
+      'test-button': TestButton,
+      'toggle-button': ToggleButton
     }
   }
 </script>

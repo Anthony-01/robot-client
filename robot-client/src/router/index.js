@@ -14,12 +14,6 @@ console.log(Login);
 
 export default new Router({
   routes: [
-    // {
-    //   path: '/',
-    //   // redirect: '/login',
-    //   name: 'HelloWorld',
-    //   component: HelloWorld
-    // },
     {
       path: '/',
       redirect: '/login',

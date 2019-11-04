@@ -32,7 +32,7 @@
           </div>
           <div class="split" style="margin-top: 23px;">批量修改行为</div>
           <div class="select-wrapper">
-            <div class="title"><span>行为模型1:</span></div>
+            <div class="title"><span>行为模型:</span></div>
             <select>
               <option value="0">皇帝</option>
               <option value="1">地主</option>

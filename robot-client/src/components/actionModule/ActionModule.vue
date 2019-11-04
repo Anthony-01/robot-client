@@ -109,7 +109,10 @@
                       <span>抢庄选项:</span>
                     </div>
                     <div class="option">
-                      <input type="checkbox" class="toggle select-option" id="buqiang1"><label for="buqiang1">不抢</label>
+                      <!--<input type="checkbox" class="toggle select-option" id="buqiang1"><label for="buqiang1">不抢</label>-->
+                      <!--@click.native="modules[0].option1.btn1 = !modules[0].option1.btn1"-->
+                      <!--:select.sync="modules[0].option1.btn1"-->
+                      <toggle-button class="toggle select-option"   v-model="modules[0].option1.btn1" ></toggle-button><span>不抢</span>
                     </div>
                   </div>
                   <div class="qiang-item">
@@ -269,6 +272,7 @@
           </div>
           <div class="btn-close">
             <my-button :commonSrc="agreeSrc" class="agree-btn" eventName="agree-event" @agree-event="_close"></my-button>
+            {{test1}}
           </div>
         </div>
       </el-dialog>
@@ -277,6 +281,9 @@
 
 <script>
   import MyButton from "../myButton/MyButton.vue";
+  import ToggleButton from '../myToggleButton/MyToggleButton.vue'
+  import user from '../../store/user';
+
   export default {
     data() {
       return {
@@ -291,6 +298,76 @@
         module: [
           ["A", "B"],
           ["C", "D"]
+        ],
+        modules: [
+          {
+            option1: {
+              btn1: false,
+              btn2: false,
+              btn3: false
+            },
+            option2: {
+              btn1: false,
+              btn2: false,
+            },
+            option3: {
+              btn1: false,
+              btn2: false,
+              btn3: false,
+              btn4: false,
+            }
+          },
+          {
+            option1: {
+              btn1: false,
+              btn2: false,
+              btn3: false
+            },
+            option2: {
+              btn1: false,
+              btn2: false,
+            },
+            option3: {
+              btn1: false,
+              btn2: false,
+              btn3: false,
+              btn4: false,
+            }
+          },
+          {
+            option1: {
+              btn1: false,
+              btn2: false,
+              btn3: false
+            },
+            option2: {
+              btn1: false,
+              btn2: false,
+            },
+            option3: {
+              btn1: false,
+              btn2: false,
+              btn3: false,
+              btn4: false,
+            }
+          },
+          {
+            option1: {
+              btn1: false,
+              btn2: false,
+              btn3: false
+            },
+            option2: {
+              btn1: false,
+              btn2: false,
+            },
+            option3: {
+              btn1: false,
+              btn2: false,
+              btn3: false,
+              btn4: false,
+            }
+          }
         ]
       }
     },
@@ -307,6 +384,18 @@
       },
       openDialog() {
         this.onlyVisible = true;
+      },
+      onToggleBtn(event) {
+        console.log(event.name);
+        console.log(user.count);
+        switch(event.name) {
+          case "name1": {
+
+          }
+        }
+      },
+      testE(event) {
+        console.log("hello", event);
       }
     },
     props: {
@@ -315,8 +404,14 @@
         default: false
       }
     },
+    computed: {
+      test1() {
+        return  user.count;
+      }
+    },
     components: {
-      'my-button': MyButton
+      'my-button': MyButton,
+      'toggle-button': ToggleButton
     }
   }
 </script>

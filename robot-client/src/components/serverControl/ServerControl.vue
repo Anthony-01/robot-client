@@ -38,13 +38,16 @@
             <th class="table-title-item" width="70" style="flex-grow:8"></th>
           </tr>
           <tr v-for="(item, index) in batchAry" class="table-row table-body">
-            <td class="table-body-item" width="25"  style="flex-grow:1"><input
-              name="Fruit"
-              type="checkbox"
-              class="check-input"
-              v-model="item.isSelect"
-              @click="_inputEvent($event,index)"
-            /></td>
+            <td class="table-body-item" width="25"  style="flex-grow:1">
+              <!--<input-->
+              <!--name="Fruit"-->
+              <!--type="checkbox"-->
+              <!--class="check-input"-->
+              <!--v-model="item.isSelect"-->
+              <!--@click="_inputEvent($event,index)"-->
+             <!--/>-->
+              <toggle-button class="check-input" :select="item.isSelect" :index="index" @toggle="toggleBtn"></toggle-button>
+            </td>
             <td class="table-body-item" width="70"  style="flex-grow:1">{{item.index}}</td>
             <td class="table-body-item" width="70"  style="flex-grow:2">{{item.id}}</td>
             <td class="table-body-item" width="70"  style="flex-grow:3">{{item.nickName}}</td>
@@ -68,7 +71,11 @@
         </table>
       </div>
       <div class="btn-wrapper">
-        <div class="btn-all"><input type="checkbox" @click="_cancel" v-model="btnCancel"><label >{{infoTip}}</label></div>
+        <div class="btn-all">
+          <!--<input type="checkbox" @click="_cancel" v-model="btnCancel"><label >{{infoTip}}</label>-->
+          <toggle-button class="check-input" :select="btnCancel"  @toggle="_cancel"></toggle-button>
+          <span class="txt">{{infoTip}}</span>
+        </div>
         <div class="sub-wrapper">
           <my-button :commonSrc="modifyAllSrc" class="sub-button" eventName="modify-event" @modify-event="modifyEvent"></my-button>
           <my-button :commonSrc="deleteAllSrc" class="sub-button" eventName="deleteAll" @deleteAll="deleteAll" ></my-button>
@@ -76,9 +83,6 @@
 
       </div>
       <nav-footer class="nav-footer"></nav-footer>
-<!--
-      <div class="footer">服务器修改模板，里面可修改机器人属性，支持跨页全选操作。机器人带的积分，除非输光，第二次上线时，最好保持上次的值，另外可设定一个最高值，比如10万，高于则可回收。</div>
--->
       <build-dialog :dialogVisible="buildDialog" @closeDialog="closeDialog" ref="buildDialog"></build-dialog>
       <batch-dialog :batchVisible="batchAddDialog" @closeBatchDialog="closeBatchDialog" ref="batchDialog"></batch-dialog>
       <modify-dialog :modifyDialog="modifyAllDialog" @closeModifyDialog="closeModifyDialog" ref="modifyDialog"></modify-dialog>
@@ -89,8 +93,9 @@
   import MyButton from '../myButton/MyButton.vue';
   import NavFooter from '../navFooter/NavFooter.vue';
   import BuildDialog from "../accompony/Accompony.vue";
-  import BatchDialog from "../batchAdd/BatchAdd.vue"
-  import ModifyDialog from "../modifyAll/ModifyAll.vue"
+  import BatchDialog from "../batchAdd/BatchAdd.vue";
+  import ModifyDialog from "../modifyAll/ModifyAll.vue";
+  import ToggleButton from '../myToggleButton/MyToggleButton.vue';
   export default {
     data() {
       return {
@@ -117,7 +122,8 @@
             action3: "无",
             rule: "大土豪1",
             serverTime: "7:00 — 10:00",
-            score: "3000 - 10000"
+            score: "3000 - 10000",
+            isSelect: false
           },
           {
             index: "002",
@@ -131,7 +137,8 @@
             action3: "无",
             rule: "大土豪1",
             serverTime: "7:00 — 10:00",
-            score: "3000 - 10000"
+            score: "3000 - 10000",
+            isSelect: false
           },
           {
             index: "003",
@@ -145,7 +152,8 @@
             action3: "无",
             rule: "大土豪1",
             serverTime: "7:00 — 10:00",
-            score: "3000 - 10000"
+            score: "3000 - 10000",
+            isSelect: false
           },
           {
             index: "004",
@@ -159,7 +167,8 @@
             action3: "无",
             rule: "大土豪1",
             serverTime: "7:00 — 10:00",
-            score: "3000 - 10000"
+            score: "3000 - 10000",
+            isSelect: false
           },
           {
             index: "005",
@@ -173,7 +182,8 @@
             action3: "无",
             rule: "大土豪1",
             serverTime: "7:00 — 10:00",
-            score: "3000 - 10000"
+            score: "3000 - 10000",
+            isSelect: false
           },
           {
             index: "006",
@@ -187,7 +197,8 @@
             action3: "无",
             rule: "大土豪1",
             serverTime: "7:00 — 10:00",
-            score: "3000 - 10000"
+            score: "3000 - 10000",
+            isSelect: false
           },
           {
             index: "007",
@@ -201,7 +212,8 @@
             action3: "无",
             rule: "大土豪1",
             serverTime: "7:00 — 10:00",
-            score: "3000 - 10000"
+            score: "3000 - 10000",
+            isSelect: false
           },
           {
             index: "008",
@@ -215,7 +227,8 @@
             action3: "无",
             rule: "大土豪1",
             serverTime: "7:00 — 10:00",
-            score: "3000 - 10000"
+            score: "3000 - 10000",
+            isSelect: false
           }
         ],
         infoTip: "全选",
@@ -227,19 +240,6 @@
       }
     },
     mounted() {
-//      setTimeout(() => {
-//        this.batchAry = [
-//          {
-//            isSelect: false
-//          },
-//          {
-//            isSelect: true
-//          },
-//          {
-//            isSelect: false
-//          }
-//        ]
-//      }, 2000)
     },
     methods: {
       onConfig() {
@@ -295,13 +295,18 @@
       _inputEvent(event, type) {
 
       },
+      toggleBtn(event) {
+        let index = event.type;
+        this.batchAry[index].isSelect = !this.batchAry[index].isSelect;
+      }
     },
     components: {
       'my-button': MyButton,
       'nav-footer': NavFooter,
       'build-dialog': BuildDialog,
       'batch-dialog': BatchDialog,
-      'modify-dialog': ModifyDialog
+      'modify-dialog': ModifyDialog,
+      'toggle-button': ToggleButton
     }
   }
 </script>
